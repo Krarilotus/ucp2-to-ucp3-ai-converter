@@ -119,8 +119,8 @@ def process_aiv_files(original_name, output_name, char_output_dir, source_path) 
         new_filename = f"{output_name.lower()}{number}.aiv"
         shutil.copy2(os.path.join(source_path, filename), os.path.join(output_dir, new_filename))
         mappings[f"castle_{number}"] = new_filename
-    with open(os.path.join(output_dir, "mappings.json"), 'w', encoding='utf-8') as f: json.dump(mappings, f, indent=2)
-    print(f"    ├─ Found and processed AIV files, created mappings.json")
+    with open(os.path.join(output_dir, "mapping.json"), 'w', encoding='utf-8') as f: json.dump(mappings, f, indent=2)
+    print(f"    ├─ Found and processed AIV files, created mapping.json")
     return True
 
 def process_portrait_files(original_name: str, char_output_dir: str, source_path: str) -> bool:
@@ -176,8 +176,8 @@ def process_speech_files(original_name, output_name, char_output_dir, source_pat
         shutil.copy2(os.path.join(source_path, source_filename), os.path.join(output_dir, new_filename))
         final_mappings[key] = new_filename
         
-    write_aligned_json(final_mappings, os.path.join(output_dir, "mappings.json"))
-    print(f"    ├─ Found and processed speech files, created mappings.json")
+    write_aligned_json(final_mappings, os.path.join(output_dir, "mapping.json"))
+    print(f"    ├─ Found and processed speech files, created mapping.json")
     return True
 
 def process_binks_files(original_name: str, output_name: str, char_output_dir: str, source_path: str) -> bool:
@@ -217,8 +217,8 @@ def process_binks_files(original_name: str, output_name: str, char_output_dir: s
                 final_mappings[key] = copied_files[source_file]
                 
     if final_mappings:
-        write_aligned_json(final_mappings, os.path.join(char_output_dir, "binks", "mappings.json"))
-        print(f"    └─ Found and processed bink files, created mappings.json")
+        write_aligned_json(final_mappings, os.path.join(char_output_dir, "binks", "mapping.json"))
+        print(f"    └─ Found and processed bink files, created mapping.json")
     return bool(final_mappings)
 
 def create_meta_json(folder_name: str, char_info: dict, cli_args: argparse.Namespace):
